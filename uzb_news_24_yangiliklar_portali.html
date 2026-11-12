@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UZB NEWS 24 — O'zbekiston va Jahon yangiliklari</title>
+    
+    <!-- Google Fonts: Inter & Merriweather (jurnalistika uslubi uchun) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            800: '#1e3a8a',
+                            900: '#0f172a',
+                        }
+                    },
+                    animation: {
+                        'ticker': 'ticker 35s linear infinite',
+                    },
+                    keyframes: {
+                        ticker: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Maxsus skrollbar va yordamchi stillar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .ticker-wrap:hover .animate-ticker {
+            animation-play-state: paused;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans antialiased">
+
+    <!-- 1. YUQORI QISM: OB-HAVO, VALYUTA VA SANA (TOP BAR) -->
+    <div class="bg-slate-900 text-slate-300 text-xs border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2">
+            <!-- Sana va Ob-havo -->
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-1.5 text-slate-200 font-medium">
+                    <i class="fa-regular fa-calendar text-blue-400"></i>
+                    <span id="current-date">12-noyabr, 2026-yil, Payshanba</span>
+                </div>
+                <span class="text-slate-700">|</span>
+                <div class="flex items-center space-x-1.5 bg-slate-800/80 px-2.5 py-0.5 rounded-full">
+                    <i class="fa-solid fa-sun text-amber-400"></i>
+                    <span class="text-white font-semibold">Toshkent +18°C</span>
+                    <span class="hidden sm:inline text-slate-400">(Ochiq havo)</span>
+                </div>
+            </div>
+
+            <!-- Valyuta kurslari (MB rasmiy kursi) -->
+            <div class="flex items-center space-x-4 overflow-x-auto no-scrollbar py-0.5">
+                <span class="text-slate-400 hidden md:inline">MB kurslari:</span>
+                <div class="flex items-center space-x-1">
+                    <span class="font-bold text-white">USD</span>
+                    <span class="text-emerald-400 font-semibold">12 845.50</span>
+                    <i class="fa-solid fa-caret-up text-emerald-400 text-[10px]"></i>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <span class="font-bold text-white">EUR</span>
+                    <span class="text-rose-400 font-semibold">13 910.20</span>
+                    <i class="fa-solid fa-caret-down text-rose-400 text-[10px]"></i>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <span class="font-bold text-white">RUB</span>
+                    <span class="text-emerald-400 font-semibold">134.80</span>
+                    <i class="fa-solid fa-caret-up text-emerald-400 text-[10px]"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASOSIY HEADER & NAVIGATSIYA -->
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20 gap-4">
+                <!-- Logotip -->
+                <a href="#" onclick="resetFilters(event)" class="flex items-center space-x-2.5 shrink-0 group">
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-blue-700 to-indigo-900 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <span class="font-extrabold text-lg sm:text-xl tracking-tighter">UZ</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="flex items-center space-x-1">
+                            <span class="font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 dark:text-white">UZB NEWS</span>
+                            <span class="px-1.5 py-0.5 text-xs font-extrabold bg-rose-600 text-white rounded-md">24</span>
+                        </div>
+                        <span class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wider uppercase">Tezkor va xolis axborot</span>
+                    </div>
+                </a>
+
+                <!-- Qidiruv paneli (Desktop) -->
+                <div class="hidden md:flex flex-1 max-w-md mx-4">
+                    <div class="relative w-full">
+                        <input type="text" id="search-input" placeholder="Yangiliklar, mavzular yoki kalit so'zlar bo'yicha qidirish..." 
+                            class="w-full pl-10 pr-10 py-2.5 text-sm bg-slate-100 dark:bg-slate-800 border border-transparent focus:border-blue-600 focus:bg-white dark:focus:bg-slate-900 rounded-xl outline-none transition-all text-slate-800 dark:text-slate-100 placeholder-slate-400">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                        <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- O'ng tarafdagi tugmalar: Tungi rejim & Mobil menyu -->
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <!-- Mobil qidiruv tugmasi -->
+                    <button onclick="toggleMobileSearch()" class="md:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                    <!-- Tungi/Kunduzgi rejim o'tkazgichi -->
+                    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Mavzuni o'zgartirish"
+                        class="flex items-center space-x-2 px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition font-medium text-sm">
+                        <i id="theme-icon" class="fa-solid fa-moon text-base"></i>
+                        <span id="theme-text" class="hidden lg:inline text-slate-700 dark:text-slate-200">Tungi rejim</span>
+                    </button>
+
+                    <!-- Jonli efir tugmasi -->
+                    <button onclick="showToast('Jonli efir tez orada boshlanadi!')" class="hidden sm:flex items-center space-x-2 px-3.5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-sm font-semibold shadow-sm transition">
+                        <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                        <span>LIVE</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobil qidiruv maydoni (yashirin) -->
+            <div id="mobile-search-bar" class="hidden md:hidden pb-3">
+                <div class="relative w-full">
+                    <input type="text" id="mobile-search-input" placeholder="Yangiliklarni qidirish..." 
+                        class="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-100 dark:bg-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-blue-600 text-slate-800 dark:text-slate-100">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- Kategoriyalar menyusi -->
+            <nav class="flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar py-2.5 border-t border-slate-100 dark:border-slate-800/80" id="category-nav">
+                <button data-category="Barchasi" class="cat-btn active px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-blue-700 text-white transition whitespace-nowrap">
+                    Barchasi
+                </button>
+                <button data-category="O'zbekiston" class="cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap">
+                    O'zbekiston
+                </button>
+                <button data-category="Jahon" class="cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap">
+                    Jahon
+                </button>
+                <button data-category="Iqtisodiyot" class="cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap">
+                    Iqtisodiyot
+                </button>
+                <button data-category="Texnologiya" class="cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap">
+                    Texnologiya
+                </button>
+                <button data-category="Sport" class="cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap">
+                    Sport
+                </button>
+                <button data-category="Madaniyat" class="cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap">
+                    Madaniyat
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. TEZKOR XABARLAR TASMASI (BREAKING NEWS TICKER) -->
+    <div class="bg-blue-50 dark:bg-slate-900/90 border-b border-blue-100 dark:border-slate-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-10">
+            <div class="flex items-center space-x-2 bg-rose-600 text-white text-xs font-bold uppercase px-2.5 py-1 rounded-md shrink-0 mr-3 shadow-sm">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Tezkor</span>
+            </div>
+            <div class="ticker-wrap relative flex-1 overflow-hidden h-6 flex items-center">
+                <div class="animate-ticker flex whitespace-nowrap space-x-12 text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200" id="breaking-ticker">
+                    <!-- JS orqali to'ldiriladi -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASOSIY KONTENT KONTEYNERI -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+        <!-- 3. ASOSIY QISM (HERO SECTION) - Faqat "Barchasi" tanlanganda va qidiruv bo'sh bo'lganda ko'rinadi -->
+        <section id="hero-section" class="mb-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Katta bosh maqola (7 ustun) -->
+                <div id="hero-main" class="lg:col-span-7 xl:col-span-8">
+                    <!-- JS orqali yuklanadi -->
+                </div>
+
+                <!-- Muhim yangiliklar ro'yxati (5 ustun) -->
+                <div class="lg:col-span-5 xl:col-span-4 bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100 dark:border-slate-800">
+                            <h2 class="font-bold text-base sm:text-lg flex items-center space-x-2 text-slate-900 dark:text-white">
+                                <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                                <span>Muhim xabarlar</span>
+                            </h2>
+                            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400">Bugun</span>
+                        </div>
+                        <div id="hero-side-list" class="space-y-4 divide-y divide-slate-100 dark:divide-slate-800">
+                            <!-- JS orqali 4 ta muhim xabar yuklanadi -->
+                        </div>
+                    </div>
+                    <button onclick="scrollToFeed()" class="mt-5 w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 text-slate-700 dark:text-slate-200 text-xs font-semibold transition flex items-center justify-center space-x-2">
+                        <span>Barcha yangiliklarga o'tish</span>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 & 6. YANGILIKLAR LENTASI VA YON PANEL (SIDEBAR) -->
+        <div id="news-feed-anchor" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Chap qism: Yangiliklar kartochkalari (8 ustun) -->
+            <div class="lg:col-span-8">
+                <!-- Sarlavha va natijalar soni -->
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-1.5 h-7 bg-blue-700 rounded-full"></div>
+                        <h2 id="feed-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">So'nggi yangiliklar</h2>
+                    </div>
+                    <span id="articles-count" class="text-xs sm:text-sm font-medium px-3 py-1 rounded-full bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                        14 ta maqola
+                    </span>
+                </div>
+
+                <!-- Yangiliklar Gridi -->
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- JS orqali kartochkalar chiziladi -->
+                </div>
+
+                <!-- Bo'sh natija holati -->
+                <div id="empty-state" class="hidden text-center py-16 px-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-2xl">
+                        <i class="fa-regular fa-newspaper"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Hech qanday yangilik topilmadi</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-5">Qidiruv so'zini o'zgartirib ko'ring yoki barcha kategoriyalarni tanlang.</p>
+                    <button onclick="resetFilters()" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition">
+                        Barcha yangiliklarni ko'rsatish
+                    </button>
+                </div>
+            </div>
+
+            <!-- 6. O'ng qism: YON PANEL (SIDEBAR - 4 ustun) -->
+            <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-36">
+                
+                <!-- Eng ko'p o'qilgan maqolalar reytingi -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+                    <div class="flex items-center space-x-2 pb-3 mb-4 border-b border-slate-100 dark:border-slate-800">
+                        <i class="fa-solid fa-fire text-rose-500 text-lg"></i>
+                        <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">Eng ko'p o'qilganlar</h3>
+                    </div>
+                    <div id="most-read-list" class="space-y-4">
+                        <!-- JS orqali Top 5 reyting yuklanadi -->
+                    </div>
+                </div>
+
+                <!-- Haftalik Ob-havo Prognozi Vidjeti -->
+                <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-2xl p-5 text-white shadow-md">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-blue-200 font-semibold">Ob-havo prognozi</span>
+                            <h3 class="text-lg font-bold flex items-center space-x-1.5 mt-0.5">
+                                <i class="fa-solid fa-location-dot text-rose-400 text-sm"></i>
+                                <span>Toshkent shahri</span>
+                            </h3>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-3xl font-extrabold">+18°</span>
+                            <p class="text-xs text-blue-200">Quyoshli</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-5 gap-2 pt-3 border-t border-white/15 text-center text-xs">
+                        <div class="bg-white/10 rounded-xl py-2 px-1">
+                            <p class="text-blue-200 mb-1">Jum</p>
+                            <i class="fa-solid fa-sun text-amber-300 text-sm mb-1"></i>
+                            <p class="font-bold">+19°</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl py-2 px-1">
+                            <p class="text-blue-200 mb-1">Shan</p>
+                            <i class="fa-solid fa-cloud-sun text-amber-200 text-sm mb-1"></i>
+                            <p class="font-bold">+16°</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl py-2 px-1">
+                            <p class="text-blue-200 mb-1">Yak</p>
+                            <i class="fa-solid fa-cloud-rain text-sky-300 text-sm mb-1"></i>
+                            <p class="font-bold">+13°</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl py-2 px-1">
+                            <p class="text-blue-200 mb-1">Dush</p>
+                            <i class="fa-solid fa-cloud-sun text-amber-200 text-sm mb-1"></i>
+                            <p class="font-bold">+15°</p>
+                        </div>
+                        <div class="bg-white/10 rounded-xl py-2 px-1">
+                            <p class="text-blue-200 mb-1">Sesh</p>
+                            <i class="fa-solid fa-sun text-amber-300 text-sm mb-1"></i>
+                            <p class="font-bold">+17°</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Obuna bo'lish (Newsletter) formasi -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3">
+                        <i class="fa-regular fa-envelope text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white mb-1">Kunlik dayjestga obuna</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-4">
+                        Eng muhim va tahliliy yangiliklarni har kuni ertalab elektron pochtangizga bepul qabul qiling.
+                    </p>
+                    <form id="newsletter-form" onsubmit="handleSubscribe(event)" class="space-y-2.5">
+                        <input type="email" id="newsletter-email" required placeholder="Elektron pochtangiz (misol@mail.uz)" 
+                            class="w-full px-3.5 py-2.5 text-sm rounded-xl bg-slate-100 dark:bg-slate-800 border border-transparent focus:border-blue-600 focus:bg-white dark:focus:bg-slate-900 outline-none text-slate-800 dark:text-slate-100">
+                        <button type="submit" class="w-full py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold shadow-sm transition">
+                            Obuna bo'lish
+                        </button>
+                    </form>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- 5. MAQOLANI TO'LIQ O'QISH OYNASI (ARTICLE READER MODAL) -->
+    <div id="article-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/75 backdrop-blur-sm p-3 sm:p-6 flex items-start justify-center">
+        <div class="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 my-4 sm:my-8 overflow-hidden animate-fadeIn">
+            
+            <!-- Modal yuqori paneli (Sticky) -->
+            <div class="sticky top-0 z-10 flex items-center justify-between px-5 py-3.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-100 dark:border-slate-800">
+                <div class="flex items-center space-x-2">
+                    <span id="modal-category" class="px-2.5 py-1 rounded-md text-xs font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+                        Kategoriya
+                    </span>
+                    <span id="modal-read-time" class="text-xs text-slate-500 dark:text-slate-400">
+                        <i class="fa-regular fa-clock mr-1"></i> 4 daqiqa
+                    </span>
+                </div>
+                <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-rose-100 hover:text-rose-600 dark:hover:bg-rose-900/40 dark:hover:text-rose-400 flex items-center justify-center text-slate-600 dark:text-slate-300 transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal ichki kontenti -->
+            <div class="p-5 sm:p-8">
+                <!-- Sarlavha -->
+                <h1 id="modal-title" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight mb-4">
+                    Maqola sarlavhasi
+                </h1>
+
+                <!-- Muallif va meta ma'lumotlar -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-slate-100 dark:border-slate-800 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                    <div class="flex items-center space-x-3">
+                        <div id="modal-author-avatar" class="w-10 h-10 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center text-sm">
+                            AA
+                        </div>
+                        <div>
+                            <p id="modal-author" class="font-bold text-slate-900 dark:text-white">Muallif ismi</p>
+                            <p id="modal-date" class="text-xs">12-noyabr, 2026 • 09:15</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span><i class="fa-regular fa-eye mr-1"></i> <strong id="modal-views">12 450</strong></span>
+                        <span><i class="fa-regular fa-comment mr-1"></i> <strong id="modal-comments-count">2</strong></span>
+                    </div>
+                </div>
+
+                <!-- Asosiy rasm -->
+                <div class="rounded-2xl overflow-hidden mb-6 bg-slate-100 dark:bg-slate-800 aspect-video">
+                    <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Maqola matni (Jurnalistika shriftida) -->
+                <div id="modal-body" class="font-serif text-base sm:text-lg leading-relaxed text-slate-800 dark:text-slate-200 space-y-5">
+                    <!-- Paragraflar JS orqali qo'shiladi -->
+                </div>
+
+                <!-- Ulashish (Share) tugmalari -->
+                <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                    <span class="text-sm font-bold text-slate-700 dark:text-slate-300">Maqolani ulashing:</span>
+                    <div class="flex items-center space-x-2.5">
+                        <button onclick="shareArticle('Telegram')" class="flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs sm:text-sm font-semibold transition">
+                            <i class="fa-brands fa-telegram text-base"></i>
+                            <span>Telegram</span>
+                        </button>
+                        <button onclick="shareArticle('Facebook')" class="flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold transition">
+                            <i class="fa-brands fa-facebook text-base"></i>
+                            <span>Facebook</span>
+                        </button>
+                        <button onclick="copyArticleLink()" class="flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-semibold transition">
+                            <i class="fa-solid fa-link"></i>
+                            <span>Havolani nusxalash</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Izohlar bo'limi -->
+                <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <h3 class="text-lg font-extrabold text-slate-900 dark:text-white mb-4 flex items-center space-x-2">
+                        <i class="fa-regular fa-comments text-blue-600"></i>
+                        <span>O'quvchilar izohlari</span>
+                    </h3>
+
+                    <!-- Izoh qoldirish formasi -->
+                    <form onsubmit="addComment(event)" class="mb-6 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/70 dark:border-slate-700/70 space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <input type="text" id="comment-name" required placeholder="Ismingiz" 
+                                class="px-3.5 py-2 text-sm rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 outline-none focus:border-blue-600">
+                        </div>
+                        <textarea id="comment-text" rows="3" required placeholder="Fikringizni yozib qoldiring..." 
+                            class="w-full px-3.5 py-2 text-sm rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 outline-none focus:border-blue-600"></textarea>
+                        <div class="flex justify-end">
+                            <button type="submit" class="px-5 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold transition">
+                                Izoh yuborish
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Mavjud izohlar ro'yxati -->
+                    <div id="modal-comments-list" class="space-y-3">
+                        <!-- JS orqali yuklanadi -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. CHIROYLI FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+                <!-- Sayt haqida -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-2.5 mb-4">
+                        <div class="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center text-white font-extrabold text-lg">
+                            UZ
+                        </div>
+                        <span class="font-extrabold text-xl text-white">UZB NEWS <span class="text-rose-500">24</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-md mb-5">
+                        "UZB NEWS 24" — O'zbekiston va jahonda ro'y berayotgan eng muhim ijtimoiy-siyosiy, iqtisodiy, texnologik va sport yangiliklarini tezkor, xolis va tahliliy tarzda yorituvchi zamonaviy axborot portali.
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <a href="#telegram" onclick="showToast('Telegram kanalimiz: @uzbnews24_official')" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-sky-500 text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="#instagram" onclick="showToast('Instagram sahifamiz: @uzbnews24')" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-pink-600 text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#youtube" onclick="showToast('YouTube kanalimiz: UZB NEWS 24 TV')" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-rose-600 text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#facebook" onclick="showToast('Facebook sahifamiz: UZB NEWS 24')" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-blue-600 text-white flex items-center justify-center transition">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bo'limlar -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Ruknlar</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><button onclick="selectCategoryFromFooter('O\'zbekiston')" class="hover:text-white transition">O'zbekiston xabarlari</button></li>
+                        <li><button onclick="selectCategoryFromFooter('Jahon')" class="hover:text-white transition">Jahon siyosati</button></li>
+                        <li><button onclick="selectCategoryFromFooter('Iqtisodiyot')" class="hover:text-white transition">Iqtisodiyot va moliya</button></li>
+                        <li><button onclick="selectCategoryFromFooter('Texnologiya')" class="hover:text-white transition">IT va Texnologiyalar</button></li>
+                        <li><button onclick="selectCategoryFromFooter('Sport')" class="hover:text-white transition">Sport yangiliklari</button></li>
+                        <li><button onclick="selectCategoryFromFooter('Madaniyat')" class="hover:text-white transition">Madaniyat va san'at</button></li>
+                    </ul>
+                </div>
+
+                <!-- Tahririyat bilan aloqa -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Tahririyat</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li class="flex items-start space-x-2.5">
+                            <i class="fa-solid fa-location-dot text-blue-500 mt-1"></i>
+                            <span>100000, Toshkent sh., Amir Temur shoh ko'chasi, 45-uy</span>
+                        </li>
+                        <li class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-phone text-blue-500"></i>
+                            <span>+998 (71) 200-24-24</span>
+                        </li>
+                        <li class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-envelope text-blue-500"></i>
+                            <span>info@uzbnews24.uz</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mualliflik huquqi -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>© 2026 UZB NEWS 24. Barcha huquqlar himoyalangan. Materiallardan foydalanganda manba ko'rsatilishi shart.</p>
+                <div class="flex items-center space-x-4">
+                    <a href="#" onclick="showToast('Foydalanish shartlari ochildi')" class="hover:text-slate-300">Foydalanish shartlari</a>
+                    <a href="#" onclick="showToast('Maxfiylik siyosati ochildi')" class="hover:text-slate-300">Maxfiylik siyosati</a>
+                    <a href="#" onclick="showToast('Reklama bo\'limi: +998 90 123-45-67')" class="hover:text-slate-300">Reklama</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- XABARNOMA (TOAST NOTIFICATION) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-xl shadow-xl flex items-center space-x-3 text-sm font-medium border border-slate-700 dark:border-slate-200">
+            <i class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-base"></i>
+            <span id="toast-message">Xabar muvaffaqiyatli bajarildi!</span>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: MA'LUMOTLAR VA INTERAKTIV FUNKSIYALAR -->
+    <script>
+        // 1. REALISTIK VA BATAFSIL O'ZBEK TILIDAGI YANGILIKLAR MA'LUMOTLAR BAZASI (14 ta maqola)
+        const articlesData = [
+            {
+                id: 1,
+                title: "Toshkentda Markaziy Osiyodagi eng yirik Sun'iy Intellekt va Raqamli Texnologiyalar Markazi ishga tushirildi",
+                summary: "Yangi innovatsion xab mintaqaviy IT-startaplarni qo'llab-quvvatlash, yuqori quvvatli bulutli serverlar va sun'iy intellekt modellarini o'zbek tilida rivojlantirishga xizmat qiladi.",
+                category: "Texnologiya",
+                author: "Sardorbek Karimov",
+                date: "12-noyabr, 2026 • 08:45",
+                readTime: "4 daqiqa",
+                views: 28450,
+                isFeatured: true,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+                content: [
+                    "Bugun poytaxtimiz Toshkent shahrida Markaziy Osiyo mintaqasida yagona bo'lgan yirik Sun'iy Intellekt va Raqamli Texnologiyalar Markazining tantanali ochilish marosimi bo'lib o'tdi. Ushbu loyiha mamlakatimizning raqamli transformatsiya strategiyasi doirasida amalga oshirildi.",
+                    "Markaz tarkibida zamonaviy superkompyuter klasteri, yosh dasturchilar uchun 24/7 rejimida ishlovchi kovorking zonalari, shuningdek, xalqaro IT-kompaniyalarning tadqiqot laboratoriyalari joylashgan. Mutaxassislarning ta'kidlashicha, bu yerda o'zbek tilidagi katta til modellari (LLM) va tibbiyot, qishloq xo'jaligi hamda ta'lim sohalari uchun intellektual tizimlar ishlab chiqiladi.",
+                    "Loyiha doirasida har yili 5000 nafardan ortiq yosh mutaxassislar xalqaro sertifikatlar asosida o'qitiladi va eng istiqbolli 100 ta startap loyihaga jami 15 million dollarlik venchur sarmoyalar yo'naltirilishi rejalashtirilgan.",
+                    "Ekspertlar fikricha, mazkur markazning ishga tushirilishi O'zbekistonning IT-eksport salohiyatini 2027-yil yakuniga qadar 1,5 milliard dollarga yetkazishda muhim drayver vazifasini o'taydi."
+                ],
+                comments: [
+                    { author: "Jamshid Aliyev", time: "25 daqiqa oldin", text: "Juda quvonarli xabar! O'zbek tilidagi sun'iy intellekt modellariga talab juda katta edi." },
+                    { author: "Nilufar Toshpo'latova", time: "12 daqiqa oldin", text: "Yosh dasturchilar uchun yaratilayotgan bu imkoniyatlar albatta o'z samarasini beradi." }
+                ]
+            },
+            {
+                id: 2,
+                title: "O'zbekiston yalpi ichki mahsuloti o'sish sur'ati yil yakunida 6,5 foizni tashkil etishi prognoz qilinmoqda",
+                summary: "Xalqaro moliya institutlari O'zbekistonda sanoat ishlab chiqarishi, xizmatlar sektori va investitsiyalar hajmining barqaror o'sishini yuqori baholadi.",
+                category: "Iqtisodiyot",
+                author: "Dilshod Rahimov",
+                date: "12-noyabr, 2026 • 08:10",
+                readTime: "5 daqiqa",
+                views: 19320,
+                isFeatured: false,
+                isImportant: true,
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Jahon banki va Xalqaro valyuta jamg'armasi tahlilchilari tomonidan e'lon qilingan navbatdagi mintaqaviy iqtisodiy sharhda O'zbekiston iqtisodiyotining 2026-yil yakunlari bo'yicha o'sish ko'rsatkichlari ijobiy tomonga qayta ko'rib chiqildi.",
+                    "Hisobotda qayd etilishicha, mamlakatda olib borilayotgan tarkibiy islohotlar, xususiy sektor ulushining kengayishi va yashil energetika loyihalariga kiritilayotgan to'g'ridan-to'g'ri xorijiy investitsiyalar yalpi ichki mahsulotning (YaIM) 6,5 foizga o'sishini ta'minlaydi.",
+                    "Xususan, to'qimachilik, elektrotexnika, qurilish materiallari ishlab chiqarish hamda turizm xizmatlari eksportida sezilarli sakrash kuzatilgan. Inflyatsiya darajasini jilovlash bo'yicha Markaziy bank tomonidan yuritilayotgan qat'iy pul-kredit siyosati ham narxlar barqarorligiga xizmat qilmoqda."
+                ],
+                comments: [
+                    { author: "Otabek Nurmatov", time: "1 soat oldin", text: "Kichik biznesga berilayotgan soliq yengilliklari o'z natijasini ko'rsatmoqda." }
+                ]
+            },
+            {
+                id: 3,
+                title: "Samarqandda yangi xalqaro turizm va kongress majmuasining ikkinchi bosqichi foydalanishga topshirildi",
+                summary: "Majmua bir vaqtning o'zida 4000 nafar mehmonni qabul qilish imkoniyatiga ega bo'lib, yirik xalqaro sammitlar o'tkazish uchun mo'ljallangan.",
+                category: "O'zbekiston",
+                author: "Madina Usmonova",
+                date: "12-noyabr, 2026 • 07:30",
+                readTime: "3 daqiqa",
+                views: 15890,
+                isFeatured: false,
+                isImportant: true,
+                image: "https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Qadimiy va hamisha navqiron Samarqand shahrida zamonaviy arxitektura va milliy me'morchilik an'analarini o'zida mujassam etgan yirik turizm majmuasining ikkinchi bosqichi ochildi.",
+                    "Yangi hududda 5 yulduzli ikkita mehmonxona, ekologik bog'lar, hunarmandlar ko'chasi va yuqori texnologiyali kongress-xoll barpo etilgan. Bu esa Samarqandni nafaqat tarixiy sayyohlik, balki xalqaro biznes-turizm (MICE) markaziga aylantirmoqda.",
+                    "Joriy yilning o'tgan 10 oyi davomida Samarqand viloyatiga tashrif buyurgan xorijiy sayyohlar soni 2,2 million nafardan oshdi."
+                ],
+                comments: []
+            },
+            {
+                id: 4,
+                title: "O'zbekiston milliy terma jamoasi Jahon chempionati saralash bosqichida muhim g'alabani qo'lga kiritdi",
+                summary: "Toshkentdagi «Bunyodkor» stadionida 34 ming tomoshabin ko'z o'ngida o'tgan uchrashuvda futbolchilarimiz 2:0 hisobida zafar quchdi.",
+                category: "Sport",
+                author: "Azizbek Tursunov",
+                date: "11-noyabr, 2026 • 23:15",
+                readTime: "4 daqiqa",
+                views: 42100,
+                isFeatured: false,
+                isImportant: true,
+                image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Kecha oqshom Toshkentdagi «Bunyodkor» stadionida haqiqiy futbol bayrami hukm surdi. O'zbekiston milliy terma jamoasi Jahon chempionati saralashining hal qiluvchi bahsida raqiblarini 2:0 hisobida mag'lubiyatga uchratdi.",
+                    "Uchrashuvning birinchi bo'limidayoq jamoamiz sardori tomonidan kiritilgan chiroyli gol stadionni larzaga keltirdi. Ikkinchi taymda esa yosh hujumchimizning tezkor qarshi hujumdagi aniq zarbasi hisobni ishonchli ko'rinishga olib keldi.",
+                    "Ushbu g'alabadan so'ng O'zbekiston terma jamoasi o'z guruhida peshqadamlikni mustahkamlab, mundial yo'llanmasi sari yana bir ulkan qadam tashladi."
+                ],
+                comments: [
+                    { author: "Bekzod Xolmatov", time: "3 soat oldin", text: "Yigitlarga rahmat! Stadiondagi muhit shunchaki dahshatli bo'ldi!" },
+                    { author: "Sanjar Mirzayev", time: "2 soat oldin", text: "Himoyamiz juda tartibli o'ynadi, darvozabonimizga ham alohida tahsin." }
+                ]
+            },
+            {
+                id: 5,
+                title: "Yevropa Ittifoqi yashil energetika loyihalari uchun 40 milliard yevrolik yangi dasturni tasdiqladi",
+                summary: "Dastur quyosh va shamol elektr stansiyalarini kengaytirish hamda vodorod texnologiyalarini sanoatga joriy etishni nazarda tutadi.",
+                category: "Jahon",
+                author: "Kamola Saidova",
+                date: "11-noyabr, 2026 • 19:40",
+                readTime: "4 daqiqa",
+                views: 11240,
+                isFeatured: false,
+                isImportant: true,
+                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Bryusselda bo'lib o'tgan Yevropa Ittifoqi energetika vazirlari yig'ilishida qayta tiklanuvchi energiya manbalarini jadallashtirishga qaratilgan 40 milliard yevrolik yangi moliyaviy paket ma'qullandi.",
+                    "Hujjatga ko'ra, 2030-yilga borib Yevropa Ittifoqida iste'mol qilinadigan elektr energiyasining kamida 45 foizi quyosh, shamol va gidroelektr stansiyalari hissasiga to'g'ri kelishi shart.",
+                    "Shuningdek, mazkur dastur doirasida Markaziy Osiyo mamlakatlari bilan «yashil vodorod» va elektr energiyasi eksporti bo'yicha qo'shma infratuzilma loyihalarini moliyalashtirish ham ko'zda tutilgan."
+                ],
+                comments: []
+            },
+            {
+                id: 6,
+                title: "Toshkent metrosining yangi yerusti halqa yo'li bekatlarida bepul yuqori tezlikdagi Wi-Fi ishga tushdi",
+                summary: "Yo'lovchilar endilikda metro poyezdlari va bekatlar hududida uzluksiz internet aloqasidan foydalanishlari mumkin.",
+                category: "O'zbekiston",
+                author: "Sardorbek Karimov",
+                date: "11-noyabr, 2026 • 17:20",
+                readTime: "3 daqiqa",
+                views: 16780,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1517732306149-e8f829eb588a?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Toshkent metropolitenida yo'lovchilarga qulaylik yaratish maqsadida raqamli infratuzilmani modernizatsiya qilish ishlari davom etmoqda. Bugundan e'tiboran yerusti halqa yo'lining barcha bekatlarida bepul Wi-Fi tarmog'i to'liq ishga tushirildi.",
+                    "Tarmoqqa ulanish uchun foydalanuvchilar SMS-avtorizatsiya orqali bir marta ro'yxatdan o'tishlari kifoya. Internet tezligi soniyasiga 50 megabitgacha yetishi ta'minlangan.",
+                    "Mutasaddilarning ma'lum qilishicha, yil oxirigacha yerosti bekatlarida ham 5G va Wi-Fi qamrovini kengaytirish ishlari yakuniga yetkaziladi."
+                ],
+                comments: []
+            },
+            {
+                id: 7,
+                title: "O'zbek kinoijodkorlarining tarixiy filmi xalqaro kinofestivalda «Eng yaxshi rejissura» mukofotiga sazovor bo'ldi",
+                summary: "Buyuk ipak yo'li tarixi va allomalar merosiga bag'ishlangan badiiy film hakamlar hay'ati va tomoshabinlarning yuksak e'tirofiga sazovor bo'ldi.",
+                category: "Madaniyat",
+                author: "Zilola Akbarova",
+                date: "11-noyabr, 2026 • 15:50",
+                readTime: "4 daqiqa",
+                views: 9450,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "O'zbekistonlik kinoijodkorlar tomonidan suratga olingan tarixiy-biografik badiiy film nufuzli xalqaro kinofestivalning asosiy tanlov dasturida «Eng yaxshi rejissyorlik ishi» nominatsiyasida g'olib deb topildi.",
+                    "Filmda o'rta asrlarda Movarounnahrda ilm-fan va madaniyatning gullab-yashnashi, yosh olimlarning jahon sivilizatsiyasiga qo'shgan hissasi mahorat bilan tasvirlangan. Tasvirga olish ishlari Buxoro, Xiva va Samarqandning tarixiy obidalarida olib borilgan.",
+                    "Kartina kelasi oydan boshlab mamlakatimizning barcha kinoteatrlarida keng tomoshabinlar ommasiga namoyish etiladi."
+                ],
+                comments: []
+            },
+            {
+                id: 8,
+                title: "Markaziy bank tijorat banklarida onlayn mikroqarzlar ajratish tartibiga yangi xavfsizlik qoidalarini kiritdi",
+                summary: "Endilikda masofaviy kredit rasmiylashtirishda biometrik identifikatsiya (Face-ID) va qo'shimcha tasdiqlash tizimi majburiy bo'ladi.",
+                category: "Iqtisodiyot",
+                author: "Dilshod Rahimov",
+                date: "11-noyabr, 2026 • 14:15",
+                readTime: "3 daqiqa",
+                views: 21340,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Fuqarolarning moliyaviy xavfsizligini ta'minlash va kiberfiribgarlik holatlarining oldini olish maqsadida O'zbekiston Respublikasi Markaziy banki mobil ilovalar orqali onlayn kredit olish mexanizmlarini takomillashtirdi.",
+                    "Yangi tartibga ko'ra, mijoz nomiga onlayn mikroqarz rasmiylashtirilayotganda bank ilovasi real vaqt rejimida biometrik tekshiruv o'tkazadi. Shuningdek, mablag'lar kartaga o'tkazilishidan oldin 4 soatlik «sovitish davri» joriy etildi.",
+                    "Bu chora firibgarlar ta'siriga tushib qolgan fuqarolarga o'z vaqtida bankka murojaat qilib, operatsiyani bekor qilish imkonini beradi."
+                ],
+                comments: [
+                    { author: "Rustam Qodirov", time: "5 soat oldin", text: "Juda to'g'ri qaror! Ko'pchilik firibgarlar tuzog'idan saqlanib qoladi." }
+                ]
+            },
+            {
+                id: 9,
+                title: "Yangi avlod kvant protsessorlari oddiy kompyuterlar ming yilda bajaradigan hisob-kitobni 5 daqiqada hal qildi",
+                summary: "Olimlar kvant bitlarining (kubitlar) barqarorligini oshirishga erishib, farmatsevtika va iqlim modellashtirishda inqilobiy natija qayd etdi.",
+                category: "Texnologiya",
+                author: "Sardorbek Karimov",
+                date: "11-noyabr, 2026 • 12:00",
+                readTime: "5 daqiqa",
+                views: 13670,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Xalqaro tadqiqotchilar guruhi xatoliklarni avtomatik tuzatish qobiliyatiga ega bo'lgan 256 kubitli yangi kvant protsessorini muvaffaqiyatli sinovdan o'tkazdi.",
+                    "Sinov davomida protsessor murakkab molekulyar birikmalarni simulyatsiya qilish vazifasini atigi 5 daqiqada bajardi. An'anaviy superkompyuterlar uchun bu hisob-kitob ming yildan ortiq vaqt talab qilgan bo'lar edi.",
+                    "Mutaxassislarning fikricha, ushbu texnologiya yaqin kelajakda yangi avlod dori vositalarini yaratish, batareyalar sig'imini oshirish va kiberxavfsizlik tizimlarini tubdan o'zgartiradi."
+                ],
+                comments: []
+            },
+            {
+                id: 10,
+                title: "O'zbekiston shaxmatchilari Jahon shaxmat olimpiadasida kumush medallarni qo'lga kiritdi",
+                summary: "Yosh grossmeysterlarimiz musobaqa davomida birorta ham mag'lubiyatga uchramay, dunyoning eng kuchli jamoalari qatoridan joy oldi.",
+                category: "Sport",
+                author: "Azizbek Tursunov",
+                date: "10-noyabr, 2026 • 21:30",
+                readTime: "3 daqiqa",
+                views: 24900,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "O'zbekiston shaxmat maktabi o'zining jahondagi yetakchi mavqeini yana bir bor isbotladi. Nufuzli xalqaro jamoaviy turnirda qatnashgan terma jamoamiz 11 tur yakuniga ko'ra faxrli 2-o'rinni egalladi.",
+                    "Ayniqsa, birinchi va ikkinchi taxtalarda dona surgan yosh grossmeysterlarimiz musobaqa davomida yuqori mahorat va temir iroda namoyish etishdi.",
+                    "Sport vazirligi va Shaxmat federatsiyasi g'olib sportchilarni tantanali kutib olish marosimiga tayyorgarlik ko'rmoqda."
+                ],
+                comments: []
+            },
+            {
+                id: 11,
+                title: "Xiva shahridagi Ichan-qal'a majmuasida ochiq osmon ostidagi raqamli muzey ekspozitsiyasi ochildi",
+                summary: "Sayyohlar AR-ko'zoynaklar va smartfon ilovasi orqali qadimiy obidalarning 500 yil avvalgi ko'rinishini jonli tarzda tomosha qilishlari mumkin.",
+                category: "Madaniyat",
+                author: "Zilola Akbarova",
+                date: "10-noyabr, 2026 • 18:10",
+                readTime: "4 daqiqa",
+                views: 10820,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "YUNESKOning Butunjahon merosi ro'yxatiga kiritilgan Xivadagi Ichan-qal'a tarixiy-me'moriy qo'riqxonasida zamonaviy «Smart-Muzey» loyihasi ishga tushirildi.",
+                    "Endilikda mahalliy va xorijiy sayyohlar maxsus QR-kodlar va to'ldirilgan reallik (AR) texnologiyasi yordamida Xiva xonligi davridagi savdo rastalari, madrasalar hayoti va tarixiy shaxslar haqida 7 tilda interaktiv ma'lumot olishlari mumkin.",
+                    "Loyiha tarixiy merosni asrab-avaylash bilan birga yosh avlodda tarixga bo'lgan qiziqishni oshirishga qaratilgan."
+                ],
+                comments: []
+            },
+            {
+                id: 12,
+                title: "BMTning iqlim o'zgarishi bo'yicha sammitida Orolbo'yi mintaqasini yashillashtirish tashabbusi qo'llab-quvvatlandi",
+                summary: "Xalqaro donorlar Orol dengizining qurigan tubida saksovulzorlar barpo etish loyihasiga qo'shimcha grantlar ajratishga kelishib oldi.",
+                category: "Jahon",
+                author: "Kamola Saidova",
+                date: "10-noyabr, 2026 • 15:40",
+                readTime: "4 daqiqa",
+                views: 14200,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Birlashgan Millatlar Tashkilotining navbatdagi iqlim konferensiyasida O'zbekiston delegatsiyasi tomonidan taqdim etilgan Orolbo'yi mintaqasida ekologik barqarorlikni tiklash dasturi xalqaro hamjamiyat tomonidan keng qo'llab-quvvatlandi.",
+                    "So'nggi yillarda Orolning qurigan tubida 1,8 million gektardan ortiq maydonda cho'l o'simliklari ekilgan bo'lib, bu qum va tuz bo'ronlarini sezilarli darajada kamaytirishga xizmat qilmoqda.",
+                    "Yangi kelishuvga ko'ra, xalqaro ekologik jamg'armalar mintaqada tomchilatib sug'orish va sho'rlanishga chidamli o'simliklar seleksiyasi uchun 50 million dollar miqdorida grant ajratadi."
+                ],
+                comments: []
+            },
+            {
+                id: 13,
+                title: "Farg'ona vodiysida elektromobillar uchun butlovchi qismlar va batareyalar ishlab chiqaruvchi zavod qurilmoqda",
+                summary: "Loyiha to'liq quvvatga chiqqach, yiliga 100 mingta elektromobilni mahalliy akkumulyator tizimlari bilan ta'minlash imkoni yaratiladi.",
+                category: "Iqtisodiyot",
+                author: "Dilshod Rahimov",
+                date: "10-noyabr, 2026 • 11:25",
+                readTime: "4 daqiqa",
+                views: 17540,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "O'zbekiston avtomobilsozlik sanoatida mahalliylashtirish darajasini oshirish va ekologik toza transport vositalari ishlab chiqarishni kengaytirish maqsadida yangi sanoat klasteri barpo etilmoqda.",
+                    "Xorijiy hamkorlar bilan birgalikda qurilayotgan korxonada zamonaviy litiy-temir-fosfat (LFP) batareyalari, elektron boshqaruv bloklari va zaryadlash stansiyalari ishlab chiqariladi.",
+                    "Korxonada 1200 dan ortiq yangi muhandislik va texnik ish o'rinlari yaratilishi ko'zda tutilgan."
+                ],
+                comments: []
+            },
+            {
+                id: 14,
+                title: "Toshkentda «Kitobxonlik haftaligi» doirasida 100 dan ortiq yangi o'zbek va jahon adabiyoti namunalari taqdim etildi",
+                summary: "Haftalik davomida yozuvchilar bilan uchrashuvlar, tarjima mahorat darslari va kitob yarmarkalari o'tkazilmoqda.",
+                category: "Madaniyat",
+                author: "Madina Usmonova",
+                date: "09-noyabr, 2026 • 16:45",
+                readTime: "3 daqiqa",
+                views: 8760,
+                isFeatured: false,
+                isImportant: false,
+                image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1000&q=80",
+                content: [
+                    "Poytaxtimizdagi Alisher Navoiy nomidagi O'zbekiston Milliy kutubxonasi va markaziy bog'larda an'anaviy «Kitobxonlik haftaligi» ko'tarinki ruhda boshlandi.",
+                    "Tadbir doirasida mamlakatimizning yetakchi nashriyotlari tomonidan chop etilgan 100 dan ortiq ilmiy-ommabop, badiiy va bolalar adabiyoti kitoblarining taqdimoti o'tkazilmoqda. Ayniqsa, jahon adabiyoti durdonalarining bevosita asl tildan o'zbek tiliga qilingan yangi tarjimalari kitobxonlarda katta qiziqish uyg'otmoqda.",
+                    "Yarmarkada kitoblar nashriyot narxlarida, 30 foizgacha chegirmalar bilan taklif etilmoqda."
+                ],
+                comments: []
+            }
+        ];
+
+        // 2. ILOVA HOLATI (STATE)
+        let currentCategory = "Barchasi";
+        let searchQuery = "";
+        let activeArticleId = null;
+
+        // Kategoriya ranglari xaritasi
+        const categoryColors = {
+            "O'zbekiston": "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300",
+            "Jahon": "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300",
+            "Iqtisodiyot": "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
+            "Texnologiya": "bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300",
+            "Sport": "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300",
+            "Madaniyat": "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300"
+        };
+
+        // Fallback rasm (agar tashqi rasm yuklanmasa)
+        const fallbackImage = "https://placehold.co/800x500/1e293b/f8fafc?text=UZB+NEWS+24";
+
+        // 3. SAHIFA YUKLANGANDA ISHGA TUSHUVCHI FUNKSIYALAR
+        document.addEventListener("DOMContentLoaded", () => {
+            initTheme();
+            renderTicker();
+            renderHeroSection();
+            renderArticles();
+            renderMostRead();
+            setupEventListeners();
+        });
+
+        // Tungi/Kunduzgi rejimni boshqarish
+        function initTheme() {
+            const savedTheme = localStorage.getItem("uzbnews-theme");
+            if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                document.documentElement.classList.add("dark");
+                updateThemeUI(true);
+            } else {
+                updateThemeUI(false);
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle("dark");
+            localStorage.setItem("uzbnews-theme", isDark ? "dark" : "light");
+            updateThemeUI(isDark);
+        }
+
+        function updateThemeUI(isDark) {
+            const icon = document.getElementById("theme-icon");
+            const text = document.getElementById("theme-text");
+            if (isDark) {
+                icon.className = "fa-solid fa-sun text-base";
+                text.textContent = "Kunduzgi rejim";
+            } else {
+                icon.className = "fa-solid fa-moon text-base";
+                text.textContent = "Tungi rejim";
+            }
+        }
+
+        // Tezkor xabarlar tasmasini chizish
+        function renderTicker() {
+            const tickerEl = document.getElementById("breaking-ticker");
+            const items = articlesData.slice(0, 6).map(art => `
+                <button onclick="openArticle(${art.id})" class="inline-flex items-center space-x-2 hover:text-blue-600 dark:hover:text-blue-400 transition text-left">
+                    <span class="text-xs font-bold text-rose-600 dark:text-rose-400">[${art.category}]</span>
+                    <span>${art.title}</span>
+                </button>
+            `).join('<span class="text-slate-400 mx-4">•</span>');
+
+            // Uzluksiz aylanishi uchun ikki marta joylashtiramiz
+            tickerEl.innerHTML = items + '<span class="text-slate-400 mx-4">•</span>' + items;
+        }
+
+        // Hero Section (Bosh maqola va 4 ta muhim xabar)
+        function renderHeroSection() {
+            const heroMain = document.getElementById("hero-main");
+            const heroSide = document.getElementById("hero-side-list");
+
+            const mainArticle = articlesData.find(a => a.isFeatured) || articlesData[0];
+            const importantArticles = articlesData.filter(a => a.isImportant).slice(0, 4);
+
+            heroMain.innerHTML = `
+                <article onclick="openArticle(${mainArticle.id})" class="group relative h-full min-h-[380px] sm:min-h-[450px] rounded-2xl overflow-hidden cursor-pointer shadow-md border border-slate-200 dark:border-slate-800 flex flex-col justify-end">
+                    <img src="${mainArticle.image}" onerror="this.src='${fallbackImage}'" alt="${mainArticle.title}" 
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/65 to-transparent"></div>
+                    
+                    <div class="relative p-5 sm:p-8 text-white z-10">
+                        <div class="flex flex-wrap items-center gap-2.5 mb-3">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold bg-blue-600 text-white uppercase tracking-wide shadow">
+                                ${mainArticle.category}
+                            </span>
+                            <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-white/15 backdrop-blur-sm text-slate-200">
+                                <i class="fa-regular fa-clock mr-1"></i> ${mainArticle.date}
+                            </span>
+                        </div>
+                        <h1 class="text-xl sm:text-3xl font-extrabold leading-snug mb-3 group-hover:text-blue-300 transition-colors">
+                            ${mainArticle.title}
+                        </h1>
+                        <p class="text-sm sm:text-base text-slate-200 line-clamp-2 mb-4 max-w-3xl">
+                            ${mainArticle.summary}
+                        </p>
+                        <div class="flex items-center space-x-4 text-xs text-slate-300 font-medium">
+                            <span><i class="fa-regular fa-user mr-1.5 text-blue-400"></i>${mainArticle.author}</span>
+                            <span>•</span>
+                            <span><i class="fa-regular fa-eye mr-1.5 text-blue-400"></i>${mainArticle.views.toLocaleString()}</span>
+                            <span>•</span>
+                            <span>${mainArticle.readTime} o'qish</span>
+                        </div>
+                    </div>
+                </article>
+            `;
+
+            heroSide.innerHTML = importantArticles.map((art, index) => `
+                <article onclick="openArticle(${art.id})" class="${index !== 0 ? 'pt-3.5' : ''} group cursor-pointer flex items-start space-x-3.5">
+                    <img src="${art.image}" onerror="this.src='${fallbackImage}'" alt="${art.title}" 
+                        class="w-20 h-20 rounded-xl object-cover shrink-0 bg-slate-100 dark:bg-slate-800 group-hover:opacity-90 transition">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center space-x-2 mb-1">
+                            <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">${art.category}</span>
+                            <span class="text-[11px] text-slate-400">• ${art.date.split('•')[1] || art.date}</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                            ${art.title}
+                        </h3>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Yangiliklar lentasini filtrlash va chizish
+        function renderArticles() {
+            const grid = document.getElementById("articles-grid");
+            const emptyState = document.getElementById("empty-state");
+            const countLabel = document.getElementById("articles-count");
+            const feedTitle = document.getElementById("feed-title");
+            const heroSection = document.getElementById("hero-section");
+
+            // Filtrlash
+            const filtered = articlesData.filter(article => {
+                const matchesCat = currentCategory === "Barchasi" || article.category === currentCategory;
+                const q = searchQuery.toLowerCase().trim();
+                const matchesSearch = !q || 
+                    article.title.toLowerCase().includes(q) || 
+                    article.summary.toLowerCase().includes(q) || 
+                    article.category.toLowerCase().includes(q);
+                return matchesCat && matchesSearch;
+            });
+
+            // Hero bo'limini faqat asosiy ekranda ko'rsatamiz
+            if (currentCategory === "Barchasi" && !searchQuery.trim()) {
+                heroSection.classList.remove("hidden");
+                feedTitle.textContent = "So'nggi yangiliklar";
+            } else {
+                heroSection.classList.add("hidden");
+                feedTitle.textContent = searchQuery.trim() 
+                    ? `"${searchQuery}" bo'yicha qidiruv natijalari` 
+                    : `${currentCategory} yangiliklari`;
+            }
+
+            countLabel.textContent = `${filtered.length} ta maqola`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = "";
+                emptyState.classList.remove("hidden");
+                return;
+            }
+
+            emptyState.classList.add("hidden");
+
+            grid.innerHTML = filtered.map(art => {
+                const badgeClass = categoryColors[art.category] || "bg-slate-100 text-slate-700";
+                return `
+                <article onclick="openArticle(${art.id})" class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                            <img src="${art.image}" onerror="this.src='${fallbackImage}'" alt="${art.title}" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-xs font-bold shadow-sm ${badgeClass}">
+                                ${art.category}
+                            </span>
+                        </div>
+                        <div class="p-5 pb-3">
+                            <div class="flex items-center space-x-2 text-xs text-slate-400 mb-2">
+                                <span><i class="fa-regular fa-calendar mr-1"></i>${art.date}</span>
+                                <span>•</span>
+                                <span><i class="fa-regular fa-clock mr-1"></i>${art.readTime}</span>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white leading-snug mb-2.5 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                ${art.title}
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                                ${art.summary}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-5 py-3.5 mt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                        <span class="font-medium text-slate-700 dark:text-slate-300 truncate max-w-[140px]">
+                            ${art.author}
+                        </span>
+                        <div class="flex items-center space-x-3">
+                            <span><i class="fa-regular fa-eye mr-1"></i>${art.views.toLocaleString()}</span>
+                            <span class="text-blue-600 dark:text-blue-400 font-semibold group-hover:translate-x-0.5 transition-transform">
+                                O'qish <i class="fa-solid fa-chevron-right text-[10px] ml-0.5"></i>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+                `;
+            }).join('');
+        }
+
+        // Eng ko'p o'qilganlar reytingi (Sidebar)
+        function renderMostRead() {
+            const listEl = document.getElementById("most-read-list");
+            const top5 = [...articlesData].sort((a, b) => b.views - a.views).slice(0, 5);
+
+            listEl.innerHTML = top5.map((art, idx) => `
+                <div onclick="openArticle(${art.id})" class="group cursor-pointer flex items-start space-x-3.5">
+                    <span class="w-7 h-7 rounded-lg shrink-0 flex items-center justify-center font-extrabold text-xs ${idx === 0 ? 'bg-rose-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'}">
+                        0${idx + 1}
+                    </span>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 leading-snug line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                            ${art.title}
+                        </h4>
+                        <div class="flex items-center space-x-2 mt-1 text-[11px] text-slate-400">
+                            <span>${art.category}</span>
+                            <span>•</span>
+                            <span><i class="fa-regular fa-eye mr-1"></i>${art.views.toLocaleString()}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Event Listenerlarni sozlash (Kategoriyalar & Qidiruv)
+        function setupEventListeners() {
+            // Kategoriya tugmalari
+            document.querySelectorAll(".cat-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    document.querySelectorAll(".cat-btn").forEach(b => {
+                        b.className = "cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap";
+                    });
+                    btn.className = "cat-btn active px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-blue-700 text-white transition whitespace-nowrap";
+                    currentCategory = btn.dataset.category;
+                    renderArticles();
+                });
+            });
+
+            // Desktop qidiruv
+            const searchInput = document.getElementById("search-input");
+            const clearBtn = document.getElementById("clear-search");
+            searchInput.addEventListener("input", (e) => {
+                searchQuery = e.target.value;
+                document.getElementById("mobile-search-input").value = searchQuery;
+                clearBtn.classList.toggle("hidden", !searchQuery);
+                renderArticles();
+            });
+
+            // Mobil qidiruv
+            const mobileInput = document.getElementById("mobile-search-input");
+            mobileInput.addEventListener("input", (e) => {
+                searchQuery = e.target.value;
+                searchInput.value = searchQuery;
+                renderArticles();
+            });
+
+            // ESC tugmasi bilan modalni yopish
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeModal();
+            });
+        }
+
+        function clearSearch() {
+            searchQuery = "";
+            document.getElementById("search-input").value = "";
+            document.getElementById("mobile-search-input").value = "";
+            document.getElementById("clear-search").classList.add("hidden");
+            renderArticles();
+        }
+
+        function toggleMobileSearch() {
+            const bar = document.getElementById("mobile-search-bar");
+            bar.classList.toggle("hidden");
+            if (!bar.classList.contains("hidden")) {
+                document.getElementById("mobile-search-input").focus();
+            }
+        }
+
+        function resetFilters(e) {
+            if (e) e.preventDefault();
+            currentCategory = "Barchasi";
+            clearSearch();
+            document.querySelectorAll(".cat-btn").forEach(b => {
+                if (b.dataset.category === "Barchasi") {
+                    b.className = "cat-btn active px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-blue-700 text-white transition whitespace-nowrap";
+                } else {
+                    b.className = "cat-btn px-3.5 py-1.5 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition whitespace-nowrap";
+                }
+            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function selectCategoryFromFooter(cat) {
+            const btn = document.querySelector(`.cat-btn[data-category="${cat}"]`);
+            if (btn) {
+                btn.click();
+                scrollToFeed();
+            }
+        }
+
+        function scrollToFeed() {
+            const el = document.getElementById("news-feed-anchor");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+        }
+
+        // 4. MAQOLANI TO'LIQ O'QISH MODALI FUNKSIYALARI
+        function openArticle(id) {
+            const article = articlesData.find(a => a.id === id);
+            if (!article) return;
+
+            activeArticleId = id;
+            article.views += 1; // Ko'rishlar sonini oshirish
+
+            // Modal maydonlarini to'ldirish
+            document.getElementById("modal-category").textContent = article.category;
+            document.getElementById("modal-read-time").innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${article.readTime} o'qish`;
+            document.getElementById("modal-title").textContent = article.title;
+            document.getElementById("modal-author").textContent = article.author;
+            document.getElementById("modal-date").textContent = article.date;
+            document.getElementById("modal-views").textContent = article.views.toLocaleString();
+
+            // Muallif bosh harflari
+            const initials = article.author.split(" ").map(n => n[0]).join("").slice(0, 2);
+            document.getElementById("modal-author-avatar").textContent = initials;
+
+            const modalImg = document.getElementById("modal-image");
+            modalImg.src = article.image;
+            modalImg.onerror = () => { modalImg.src = fallbackImage; };
+
+            // Maqola paragraflari
+            const bodyEl = document.getElementById("modal-body");
+            bodyEl.innerHTML = `<p class="font-semibold text-slate-900 dark:text-white text-lg sm:text-xl leading-relaxed">${article.summary}</p>` +
+                article.content.map(p => `<p>${p}</p>`).join("");
+
+            renderModalComments(article);
+
+            // Modalni ochish
+            const modal = document.getElementById("article-modal");
+            modal.classList.remove("hidden");
+            modal.scrollTop = 0;
+            document.body.style.overflow = "hidden";
+
+            // Asosiy ro'yxatdagi ko'rishlar sonini yangilash
+            renderArticles();
+            renderMostRead();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("article-modal");
+            modal.classList.add("hidden");
+            document.body.style.overflow = "";
+            activeArticleId = null;
+        }
+
+        // Modal tashqarisiga bosilganda yopish
+        document.getElementById("article-modal").addEventListener("click", (e) => {
+            if (e.target.id === "article-modal") closeModal();
+        });
+
+        // Izohlarni chizish va qo'shish
+        function renderModalComments(article) {
+            const listEl = document.getElementById("modal-comments-list");
+            document.getElementById("modal-comments-count").textContent = article.comments.length;
+
+            if (article.comments.length === 0) {
+                listEl.innerHTML = `<p class="text-sm text-slate-500 dark:text-slate-400 italic py-2">Hozircha izohlar yo'q. Birinchi bo'lib fikr bildiring!</p>`;
+                return;
+            }
+
+            listEl.innerHTML = article.comments.map(c => `
+                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="font-bold text-sm text-slate-900 dark:text-white">${c.author}</span>
+                        <span class="text-xs text-slate-400">${c.time}</span>
+                    </div>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">${c.text}</p>
+                </div>
+            `).join('');
+        }
+
+        function addComment(e) {
+            e.preventDefault();
+            if (!activeArticleId) return;
+
+            const nameInput = document.getElementById("comment-name");
+            const textInput = document.getElementById("comment-text");
+            const article = articlesData.find(a => a.id === activeArticleId);
+
+            if (article && nameInput.value.trim() && textInput.value.trim()) {
+                article.comments.unshift({
+                    author: nameInput.value.trim(),
+                    time: "Hozirgina",
+                    text: textInput.value.trim()
+                });
+                nameInput.value = "";
+                textInput.value = "";
+                renderModalComments(article);
+                showToast("Izohingiz muvaffaqiyatli qo'shildi!");
+            }
+        }
+
+        // Ulashish va havolani nusxalash (document.execCommand bilan)
+        function shareArticle(platform) {
+            showToast(`Maqola ${platform} orqali ulashishga tayyorlandi!`);
+        }
+
+        function copyArticleLink() {
+            const dummy = document.createElement("input");
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showToast("Maqola havolasi buferga nusxalandi!");
+        }
+
+        // Obuna bo'lish formasi
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById("newsletter-email");
+            if (emailInput.value.trim()) {
+                showToast(`${emailInput.value} manzili kunlik dayjestga ulandi!`);
+                emailInput.value = "";
+            }
+        }
+
+        // Toast xabarnoma funksiyasi
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            document.getElementById("toast-message").textContent = msg;
+            toast.classList.remove("translate-y-20", "opacity-0");
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
